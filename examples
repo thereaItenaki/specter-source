@@ -1,0 +1,93 @@
+local Pages = {
+    Aiming = Window:Page({ Name = "Main" }),
+    Rage = Window:Page({ Name = "Rage" }),
+    Visuals = Window:Page({ Name = "Visuals" }),
+    Misc = Window:Page({ Name = "Miscellaneous" }),
+    ConfigSec = Window:Page({ Name = "Configurations" })
+}
+
+local Sections = {
+    Aiming = {
+        TargetAim = {
+            Main = Pages.Aiming:Section({ Name = "Test", Side = "Right", Max = 3 }),
+            Settings = Pages.Aiming:Section({ Name = "Test", Side = "Right", Max = 3 })
+        },
+        Aimbot = {
+            Main = Pages.Aiming:Section({ Name = "Test", Side = "Left", Max = 3 }),
+            Settings = Pages.Aiming:Section({ Name = "Test ", Side = "Left", Max = 4 })
+        },
+        MouseStuff = Pages.Aiming:Section({ Name = "Test", Side = "Right", Max = 2 })
+    },
+    Visuals = {
+        MainVisuals = Pages.Visuals:Section({ Name = "Test", Side = "Left", Max = 5 }),
+        WorldVisuals = Pages.Visuals:Section({ Name = "Test", Side = "Right" }),
+        PlayerChams = Pages.Visuals:Section({ Name = "Test", Side = "Left", Max = 2 }),
+        BulletTracers = Pages.Visuals:Section({ Name = " Test", Side = "Right", Max = 2 })
+    },
+    RageSector = {
+        AntiAim = Pages.Rage:Section({ Name = "Test ", Side = "Left", Max = 5 }),
+        TargetStrafe = Pages.Rage:Section({ Name = "Test", Side = "Right" }),
+        AntiHit = Pages.Rage:Section({ Name = "Test ", Side = "Left" }),
+        FakeLag = Pages.Rage:Section({ Name = "Test", Side = "Right", Max = 2 })
+    },
+    MiscSector = {
+        Fly = Pages.Misc:Section({ Name = "Test", Side = "Left" }),
+        CharMain = Pages.Misc:Section({ Name = "Test", Side = "Right" }),
+        SpeedMain = Pages.Misc:Section({ Name = "Test", Side = "Left" }),
+        Fun = Pages.Misc:Section({ Name = "Test", Side = "Right", Max = 4 })
+
+
+    },
+    Configuations = {
+        Configs = Pages.ConfigSec:Section({ Name = "Configuration", Side = "Left" }),
+        Discord = Pages.ConfigSec:Section({ Name = "Test", Side = "Right" }),
+        ScriptStuff = Pages.ConfigSec:Section({ Name = "Test", Side = "Right" })
+    }
+}
+
+
+
+local Toggles = {
+    TargetAim = {
+
+        MainToggle = Sections.Aiming.Aimbot.Main:Keybind(
+            {
+            Name = "Enabled",
+            Callback = function(key) end,
+            Default = key,
+            Pointer = "1",
+            Mode = "Toggle",
+            toggleflag = "1.1",
+            togglecallback = function(state)
+            end
+        }
+        ),
+},
+        HitboxesToggle = Sections.Aiming.Aimbot.Main:Dropdown(
+            {
+            Name = "Hitbox",
+            Options = { "Head", "UpperTorso", "HumanoidRootPart" },
+            Default = "Head",
+            Pointer = "2",
+            callback = function(state)
+            end
+        }
+        ),
+},
+            FOVSlider = Sections.Aiming.TargetAim.Settings:Slider(
+            {
+            Name = "Bullet Radius Size",
+            Minimum = 1,
+            Maximum = 10,
+            Default = 1,
+            Decimals = 0.1,
+            Pointer = "7",
+            callback = function(state)
+                AimingSettings.TargetAim.FOV = state ^ 3
+            end
+        }
+        )
+
+    },
+
+
